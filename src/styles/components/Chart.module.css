@@ -1,0 +1,14 @@
+.container{
+    background: var(--white);
+    border-radius: 5px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem 2rem;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    position: relative;
+    margin-top: 150px;
+    margin-bottom: 200px;
+}

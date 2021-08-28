@@ -39,11 +39,12 @@ a{
   --red: #e83f5b;
   --green: #4cd62b;
   --blue: #5965e0;
-  --light-blue: #3BA2FF;
+  --light-blue: #5271ff;
   --blue-dark: #4953b8;
   --blue-twitter: #2aa9e0;
   --black: #000000;
   --blue-hover: #0086FF;
+  --cian: #d7f9fa;
 }
 
 /*para um width de 1080p uma tela de pc, o font-size vai ter 93.75% do tamanho do rem,
