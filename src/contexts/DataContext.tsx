@@ -2,6 +2,7 @@ import { createContext, useState, ReactNode, useEffect } from "react";
 import h337 from 'heatmap.js';
 import axios from 'axios';
 
+
 // todas essas informações dos sensores vem do banco
 interface Sensor{
     id: number;// id do sensor
@@ -50,11 +51,47 @@ export const DataContext =  createContext({} as DataContextData);
 
 export function DataProvider({children}: DataProviderProps){
 
+    function getConfigData(){
+        
+    }
     function getSensorsPosition(){
         
     }
     function UpdateData(){
         
+    }
+
+    async function getAllNotifications(){
+        let token = await CallApiToken();
+        let config = {
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          }
+          await axios.get( 
+              'https://gps-indoor.herokuapp.com/notification/',
+              config
+            )
+            .then( ( response ) => {
+              console.log( response )
+            } )
+            .catch()
+    }
+    async function CallApiToken(){
+        let hash = "";
+        await axios.get( 
+            'https://gps-indoor.herokuapp.com/oauth/', {
+                auth:{
+                    username: process.env.APP_USERNAME,
+                    password: process.env.APP_PASSWORD
+                }
+            }
+          )
+          .then( ( response ) => {
+              hash = response.data.hash;
+          } )
+          .catch()
+          return hash;
     }
     function buildHeatmap(){
         var element = document.getElementById('heatmap');
@@ -105,7 +142,9 @@ export function DataProvider({children}: DataProviderProps){
         // if you have a set of datapoints always use setData instead of addData
         // for data initialization
         heatmapInstance.setData(data);
+        getAllNotifications();
     }
+  
     function getSensors(){
 
         //vou usar essa função aqui quando comunicar com a API
