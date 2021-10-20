@@ -1,12 +1,12 @@
 
  .container{
     height: 100vh;/* vh = 100% da altura total*/
-    max-width: 992px;
+    max-width: 1000px;
     margin: 0 auto; /*margin 0 auto centraliza tudo*/
     padding: 2.5rem 2rem;
 
     display: flex;
-    flex-direction: column;/*column para que os elementos abaixo da experience bar fiquem um abaixo do outro*/
+    flex-direction: column;
 }
 
 .container section{
@@ -15,4 +15,13 @@
     grid-template-columns: 1fr 1fr;
     gap: 6.25rem;
     align-content: center;
+}
+
+.infobox{
+    display: flex;
+    flex-direction: column;
+
+}
+.infobox2{
+    margin-top: 20px;
 }
