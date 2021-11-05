@@ -26,6 +26,7 @@ interface RequestBody{
 interface DataContextData{
    getSensors:() => Sensor[];
    buildHeatmap:() => void;
+   
 }
 
 interface DataProviderProps{
@@ -37,7 +38,7 @@ function generateRandomQuantitiesPerSensor(){
 
     var x = 0.1;
     var y = 0.3;
-    var len = 2;
+    var len = 7;
     while(len--){
         x = x + 0.3;
         y = y + 0.2;

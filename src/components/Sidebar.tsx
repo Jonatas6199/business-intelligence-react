@@ -12,14 +12,20 @@ export function Sidebar() {
     const { buildHeatmap } = useContext(DataContext);
     return (
         <div className={styles.container} >
-            <ul>
-                <li><img src="logo.png" ></img>Smart Moving</li>
-                <div></div>
-                <li><RiMapPin5Fill className={styles.iconStyle} />Mapa de Calor</li>
-                <li><MdDashboard className={styles.iconStyle}  />Gráficos</li>
-                <li><MdSettings className={styles.iconStyle}/>Configurações</li>
-                <li onClick={buildHeatmap} ><RiRefreshLine className={styles.iconStyle} />Atualizar Dados</li>
-            </ul>
+            <div className={styles.logo}>
+                <h2>Streamline</h2>
+            </div>
+            <div className={styles.wrapper}>
+                <ul>
+                    <li><img src="logo.png" ></img>Smart Moving</li>
+                    <div></div>
+                    <li><RiMapPin5Fill className={styles.iconStyle} />Mapa de Calor</li>
+                    <li><MdDashboard className={styles.iconStyle} />Gráficos</li>
+                    <li><MdSettings className={styles.iconStyle} />Configurações</li>
+                    <li onClick={buildHeatmap} ><RiRefreshLine className={styles.iconStyle} />Atualizar Dados</li>
+                </ul>
+            </div>
+
         </div>
     )
 }
