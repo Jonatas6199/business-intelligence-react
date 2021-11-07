@@ -150,14 +150,32 @@ export function Report(props: ReportProps) {
                         // nesse caso aqui, só preciso somar tudo dos outros dias
                     }
                     <h2>Visitas por setor durante a semana inteira</h2>
-                    <Pie
+                    <Doughnut
                         options={genderOptions}
                         data={data}
                         height={400}
                         width={600}
-                    >
+                    >{
+                        //Colocar mais um embaixo: dias com mais visitas
+                    }
 
-                    </Pie>
+                    </Doughnut>
+                    <div>
+                        <h2>Setor com mais visitas</h2>
+                        <h3>Hortaliças 300 visitas</h3>
+                    </div>
+                    <div>
+                        <h2>Setor com menos visitas</h2>
+                        <h3>Bebidas 200 visitas</h3>
+                    </div>
+                    <div>
+                        <h2>Dia mais visitado</h2>
+                        <h3>Sexta-Feira 05/11/2021</h3>
+                    </div>
+                    <div>
+                        <h2>Dia menos visitado</h2>
+                        <h3>Segunda-Feira 01/11/2021</h3>
+                    </div>
                 </div>
             </span>
         </div>

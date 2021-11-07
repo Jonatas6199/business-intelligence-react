@@ -3,8 +3,6 @@
     height: 100vh;/* vh = 100% da altura total*/
     max-width: 1000px;
     margin: 0 auto; /*margin 0 auto centraliza tudo*/
-    padding: 2.5rem 2rem;
-
     display: flex;
     flex-direction: column;
 }
