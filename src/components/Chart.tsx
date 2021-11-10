@@ -1,5 +1,5 @@
 import React from 'react';
-import { Line, Bar, Doughnut } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 import styles from "../styles/components/Chart.module.css";
 
 
