@@ -7,6 +7,8 @@ export function Chart() {
 
     return (
         <div className={styles.container}>
+            <h2>Visitas</h2>
+            <div className={styles.content}>
             <Bar
                 data={{
                     labels: ['Sala de Estar', 'Suíte Master'],
@@ -29,6 +31,8 @@ export function Chart() {
             >
 
             </Bar>
+            </div>
+           
         </div>
     )
                 //TODO: TELA DE GERACAO DE RELATORIO, E NÃO PRECISA EXIBIR ELE, SÓ MANDAR BAIXAR

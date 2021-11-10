@@ -1,3 +1,28 @@
 .container{
     margin-left: 250px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contentwrapper{
+    display: flex;
+    padding: 20px;
+    margin-left: 20px;
+    gap:40px;
+}
+.tabs{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    height:100px;
+    background-color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 3px 0px 6px 0px rgba(246, 246, 246, 0.75);
+}
+
+
+.categories>h2{
+    color: rgb(70, 105, 70);
 }

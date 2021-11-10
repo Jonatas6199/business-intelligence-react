@@ -1,13 +1,8 @@
 .container{
-    height:auto;
-    min-height: 400px;
-    max-height: 600px;
-    width: auto;
-    min-width: 1000px;
-    max-width: 1200px;
-
+    height:600;
+    width: 1200;
     background: var(--white);
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     padding: 1.5rem 2rem;
 
@@ -17,11 +12,16 @@
     text-align: center;
     position: relative;
     margin-bottom: 20px;
+    margin-left: 40px;
 }
 .container p{
     color: black;
 }
-
+.container h2{
+    color: black;
+    text-align: left;
+    margin-left: 10px;
+}
 .heatmap{
     width: auto;
     max-width: 1100px;

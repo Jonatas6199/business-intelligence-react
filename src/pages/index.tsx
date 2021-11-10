@@ -18,19 +18,14 @@ export default function Home() {
                 </title>
             </Head>
             <DataProvider>
-                <section>
-                    <div>
-                        <Sidebar />
-                        <Header />
-                        <Content/>
-                    </div>
-                    <div >
-                        <InfoBox title="Total de Visitas no Período" amount="730" />
-                        <InfoBox title="Setor Mais Visitado" amount="Bebidas 450" />
-                    </div>
-                </section>
+                <div>
+                    <Sidebar />
+                    <Header />
+                    <Content />
+                    <InfoBox title="Total de Visitas no Período" amount="730" />
+                    <InfoBox title="Setor Mais Visitado" amount="Bebidas 450" />
+                </div>
             </DataProvider>
-
         </div>
     )
 }

@@ -18,6 +18,7 @@ export function Dashboard() {
   return (
     <div>
       <div id="heatmapContainer" className={styles.container}>
+        <h2> Mapa de Calor</h2>
         <div id="heatmap" className={styles.heatmap}>
           <img id="heatmap-image" src="/images/planta_baixa.png"></img>
          

@@ -7,9 +7,13 @@ import { Filters } from "./Filters";
 export function Content() {
     return (
         <div className={styles.container}>
-            <Filters />
-            <Dashboard />
-            <Chart />
+            <div className={styles.contentwrapper}>
+                <div className={styles.tabs}>
+                    <Filters />
+                </div>
+            </div>
+            <Dashboard/>
+            <Chart/>
         </div>
     )
 }

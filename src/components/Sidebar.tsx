@@ -12,6 +12,9 @@ import { MdArrowForward } from 'react-icons/md';
 
 export function Sidebar() {
     const { buildHeatmap } = useContext(DataContext);
+    function openReport() {
+		window.open("http://localhost:3000/relatorio").focus();
+	   }
     return (
         <div className={styles.navcontainer} >
             <div className={styles.logo}>
@@ -23,7 +26,7 @@ export function Sidebar() {
                         <MdDashboard className={styles.iconStyle} /> Dashboard
                     </li>
 
-                    <li>
+                    <li  onClick={openReport}>
                         <RiFilePaperLine className={styles.iconStyle} /> Relatórios
                     </li>
 

@@ -8,30 +8,33 @@ export function Filters() {
     return (
 
         <div className={styles.container}>
+            <h2> Filtros</h2>
+            <div className={styles.content}>
 
-            <input>
+
+                <button className={styles.buttonStyle}>
+                    24h
+                </button>
+                <button className={styles.selectedbuttonStyle}>
+                    7D
+                </button>
+                <button className={styles.buttonStyle}>
+                    15D
+                </button>
+                <button className={styles.buttonStyle}>
+                    30D
+                </button>
                 
-            </input>
-            <input>
-            </input>
+                <input className={styles.input} placeholder="Data Inicial (dd/mm/yyyy)" >
 
-            <button className={styles.buttonStyle}>
-                Aplicar
-            </button>
+                </input>
+                <input className={styles.input}  placeholder="Data Final (dd/mm/yyyy)" >
+                </input>
 
-            <button className={styles.buttonStyle}>
-                24h
-            </button>
-            <button className={styles.buttonStyle}>
-                7D
-            </button>
-            <button className={styles.buttonStyle}>
-                15D
-            </button>
-            <button className={styles.buttonStyle}>
-                30D
-            </button>
-
+                <button className={styles.buttonStyle}>
+                    Aplicar
+                </button>
+            </div>
         </div>
 
     )
