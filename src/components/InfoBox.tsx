@@ -11,11 +11,17 @@ export function InfoBox() {
                     <p>
                         Sábado 06/11/2021
                     </p>
+                    <p>
+                        123
+                    </p>
                 </div>
                 <div className={styles.content}>
                     <h2>Dia menos visitado</h2>
                     <p>
                         Quarta-feira 03/11/2021
+                    </p>
+                    <p>
+                        42
                     </p>
                 </div>
                 <div className={styles.content}>

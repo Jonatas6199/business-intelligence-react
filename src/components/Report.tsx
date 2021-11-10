@@ -158,21 +158,41 @@ export function Report(props: ReportProps) {
                     >
 
                     </Doughnut>
-                    <div>
-                        <h2>Setor com mais visitas</h2>
-                        <h3>Hortaliças 300 visitas</h3>
-                    </div>
-                    <div>
-                        <h2>Setor com menos visitas</h2>
-                        <h3>Bebidas 200 visitas</h3>
-                    </div>
-                    <div>
+                    <div className={styles.content}>
                         <h2>Dia mais visitado</h2>
-                        <h3>Sexta-Feira 05/11/2021</h3>
+                        <p>
+                            Sábado 06/11/2021
+                        </p>
+                        <p>
+                            123
+                        </p>
                     </div>
-                    <div>
+                    <div className={styles.content}>
                         <h2>Dia menos visitado</h2>
-                        <h3>Segunda-Feira 01/11/2021</h3>
+                        <p>
+                            Quarta-feira 03/11/2021
+                        </p>
+                        <p>
+                            42
+                        </p>
+                    </div>
+                    <div className={styles.content}>
+                        <h2>Setor com mais visitas</h2>
+                        <p>
+                            Hortaliças
+                        </p>
+                        <p>
+                            720
+                        </p>
+                    </div>
+                    <div className={styles.content}>
+                        <h2>Setor com menos visitas</h2>
+                        <p>
+                            Bebidas
+                        </p>
+                        <p>
+                            200
+                        </p>
                     </div>
                 </div>
             </span>
