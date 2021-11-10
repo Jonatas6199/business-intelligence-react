@@ -56,7 +56,7 @@ export function Report(props: ReportProps) {
                 <h1 className={styles.title}>
                     Relatório {props.title} - {getDateNow()}
                 </h1>
-                <h3>Período escolhido dos dados: {props.startDate} - {props.endDate}</h3>
+                <h3>Período escolhido dos dados: 01/11/2021 - 07/11/2021</h3>
 
                 {
                     //gráficos vão ficar nessa div debaixo
@@ -67,12 +67,12 @@ export function Report(props: ReportProps) {
                 <div>
                     <h2>Visitas na semana</h2>
                     <Line
-                        data={{
-                            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'],
-
+                         data={{
+                            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+    
                             datasets: [{
                                 label: 'Visitas por dia',
-                                data: [55, 70, 42, 60, 78],
+                                data: [55, 70, 42, 60, 78, 123, 95],
                                 tension: 0.1,
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)'
@@ -82,7 +82,7 @@ export function Report(props: ReportProps) {
                                 ],
                                 borderWidth: 1
                             }],
-
+    
                         }}
                         height={400}
                         width={600}
@@ -91,11 +91,11 @@ export function Report(props: ReportProps) {
                     <h2>Tempo médio das visitas em minutos por dia</h2>
                     <Line
                         data={{
-                            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'],
-
+                            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+    
                             datasets: [{
                                 label: 'Média de minutos por dia',
-                                data: [45, 40, 48, 68, 45, 46, 58, 32, 25, 55],
+                                data: [45, 40, 35, 54, 63, 70, 45],
                                 tension: 0.1,
                                 backgroundColor: [
                                     'rgba(0, 181, 204, 0.2)'
@@ -105,7 +105,7 @@ export function Report(props: ReportProps) {
                                 ],
                                 borderWidth: 1
                             }],
-
+    
                         }}
                         height={400}
                         width={600}
@@ -114,11 +114,11 @@ export function Report(props: ReportProps) {
                     <h2>Visitas por setor por dia</h2>
                     <Bar
                         data={{
-                            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'],
+                            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
                             datasets: [
                                 {
                                     label: 'Frios',
-                                    data: [12, 24, 32, 31, 29],
+                                    data: [12, 24, 32, 31, 29,35,22],
                                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                                     borderColor: 'rgba(255, 99, 132, 1)',
                                     borderWidth: 1,
@@ -126,7 +126,7 @@ export function Report(props: ReportProps) {
                                 },
                                 {
                                     label: 'Bebidas',
-                                    data: [19, 18, 17, 16, 31],
+                                    data: [19, 18, 17, 16, 31,27,40],
                                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                                     borderColor: 'rgba(54, 162, 235, 1)',
                                     borderWidth: 1,
@@ -134,7 +134,7 @@ export function Report(props: ReportProps) {
                                 },
                                 {
                                     label: 'Hortifruti',
-                                    data: [28, 29, 12, 40, 33],
+                                    data: [28, 29, 12, 40, 33,45,32],
                                     backgroundColor: 'rgba(38, 166, 91, 0.2)',
                                     borderColor: 'rgba(38, 166, 91, 1)',
                                     borderWidth: 1,

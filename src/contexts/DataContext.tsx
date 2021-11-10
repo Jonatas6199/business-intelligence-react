@@ -39,7 +39,7 @@ function generateRandomQuantitiesPerSensor(){
     //entrada, frios, bebidas, hortifruti 1, hortifruti 2, saída
     var x = [0.05,0.35,0.58,0.2,0.5,0.95];
     //entrada, frios, bebidas, hortifruti 1, hortifruti 2, saída
-    var y = [0.1,0.2,0.48,0.7,0.75,0.3];
+    var y = [0.08,0.18,0.45,0.67,0.7,0.24];
     var len = 7;
     while(len--){
         
