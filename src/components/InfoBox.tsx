@@ -18,9 +18,6 @@ export function InfoBox() {
                         Quarta-feira 03/11/2021
                     </p>
                 </div>
-
-            </div>
-            <div className={styles.container}>
                 <div className={styles.content}>
                     <h2>Setor com mais visitas</h2>
                     <p>
@@ -40,6 +37,7 @@ export function InfoBox() {
                     </p>
                 </div>
             </div>
+
         </div>
 
 

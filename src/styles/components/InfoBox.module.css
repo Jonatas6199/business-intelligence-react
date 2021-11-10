@@ -10,14 +10,17 @@
     justify-content: center;
     color: black;
     text-align: center;
+    margin: 5px;
 }
 
 .container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-left: 40px;
+    height: 200px;
 }
 .holder{
     margin-bottom: 100px;
+    margin-left: 40px;
+    width: 1000px;
 }
