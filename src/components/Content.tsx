@@ -3,6 +3,7 @@ import styles from "../styles/components/Content.module.css";
 import { Chart } from "./Chart";
 import { Dashboard } from "./Dashboard";
 import { Filters } from "./Filters";
+import { InfoBox } from "./InfoBox";
 
 export function Content() {
     return (
@@ -14,6 +15,7 @@ export function Content() {
             </div>
             <Dashboard/>
             <Chart/>
+            <InfoBox/>
         </div>
     )
 }

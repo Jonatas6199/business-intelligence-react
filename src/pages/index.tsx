@@ -22,8 +22,6 @@ export default function Home() {
                     <Sidebar />
                     <Header />
                     <Content />
-                    <InfoBox title="Total de Visitas no Período" amount="730" />
-                    <InfoBox title="Setor Mais Visitado" amount="Bebidas 450" />
                 </div>
             </DataProvider>
         </div>

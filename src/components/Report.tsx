@@ -155,9 +155,7 @@ export function Report(props: ReportProps) {
                         data={data}
                         height={400}
                         width={600}
-                    >{
-                        //Colocar mais um embaixo: dias com mais visitas
-                    }
+                    >
 
                     </Doughnut>
                     <div>
