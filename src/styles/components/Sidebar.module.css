@@ -56,3 +56,40 @@
     font-size: 20px;
     font-weight: bold;
  }
+
+ .navcontainer{
+    position: fixed;
+    width:250px;
+    height:100%;
+    background-color: var(--light-blue);
+    box-shadow: 3px 0px 6px 0px rgba(246, 246, 246, 0.75);
+
+ }
+
+ .wrapper{
+    padding:10px;
+    z-index: 1;
+}
+
+
+.wrapper >ul{
+    margin-top:20px;
+     text-align: left;
+     display: flex;
+     gap:25px;
+     flex-direction: column;
+     font-size: 18px;
+     font-weight: bold;
+ }
+
+.wrapper>ul>li{
+    padding: 10px;
+    font-size: 20px;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+}
+.wrapper ul li:hover{
+    background-color: var(--blue-dark);
+    cursor: pointer;
+}

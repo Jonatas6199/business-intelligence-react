@@ -7,9 +7,11 @@ import { Header } from "../components/Header";
 import Head from "next/head";
 import styles from "../styles/pages/Home.module.css";
 import { DataProvider } from "../contexts/DataContext";
+import { Filters } from "../components/Filters";
+import { Content } from "../components/Content";
 export default function Home() {
     return (
-        <div className={styles.container}>
+        <div >
             <Head>
                 <title>
                     Inicio | Smart Moving
@@ -18,14 +20,13 @@ export default function Home() {
             <DataProvider>
                 <section>
                     <div>
-                        <Header/>
                         <Sidebar />
-                        <Dashboard />
-                        <Chart />
+                        <Header />
+                        <Content/>
                     </div>
                     <div >
-                        <InfoBox title="Total de Visitas no Período" amount ="730" />
-                        <InfoBox title="Setor Mais Visitado" amount ="Bebidas 450" />
+                        <InfoBox title="Total de Visitas no Período" amount="730" />
+                        <InfoBox title="Setor Mais Visitado" amount="Bebidas 450" />
                     </div>
                 </section>
             </DataProvider>

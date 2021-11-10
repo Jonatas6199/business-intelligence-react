@@ -31,5 +31,9 @@ export function Chart() {
             </Bar>
         </div>
     )
-
+                //TODO: TELA DE GERACAO DE RELATORIO, E NÃO PRECISA EXIBIR ELE, SÓ MANDAR BAIXAR
+                //ENVIAR OS RELATORIOS PRA API E DEIXAR DISPONIVEL PRA BAIXAR
+                //TELA DE EXPORTAR OS DADOS NO FORMATO .CSV
+                //FAZER FILTROS NO WEB E NO MOBILE
+                //NO MOBILE, SALVAR O RELATÓRIO EM ALGUM LUGAR E ABRIR ELE LÁ SÓ PELO PRINT MESMO
 }
