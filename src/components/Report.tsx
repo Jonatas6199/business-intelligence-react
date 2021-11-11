@@ -19,36 +19,7 @@ export function Report(props: ReportProps) {
         const todayFormat = dateToday.toLocaleDateString();
         return todayFormat;
     }
-    const genderOptions = {
-        maintainAspectRatio: true,
-        responsive: true,
-        cutoutPercentage: 80,
-        showTooltips: true,
-        onAnimationComplete: function () {
-            this.showTooltip(this.datasets[0].points, true);
-        },
-        tooltipEvents: []
-    }
-
-    const data = {
-        labels: ['Frios', 'Bebidas', 'Hortifruti'],
-        datasets: [{
-            label: 'Setor',
-            data: [128, 101, 142],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(38, 166, 91, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(38, 166, 91, 1)'
-            ],
-            borderWidth: 1
-        }],
-
-    }
+ 
     return (
 
         <div className={styles.container}>
@@ -149,15 +120,31 @@ export function Report(props: ReportProps) {
                     {
                         // nesse caso aqui, só preciso somar tudo dos outros dias
                     }
-                    <h2>Visitas por setor durante a semana inteira</h2>
-                    <Doughnut
-                        options={genderOptions}
-                        data={data}
-                        height={400}
-                        width={600}
+                    <h2>Visitas por setor no total</h2>
+                    <Bar className={styles.margin}
+                        data={{
+                            labels: ['Frios', 'Bebidas', 'Hortifruti'],
+                            datasets: [{
+                                label: 'Setor',
+                                data: [185, 168, 219],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(38, 166, 91, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(38, 166, 91, 1)'
+                                ],
+                                borderWidth: 1
+                            }],
+                    
+                        }}
+                      
                     >
 
-                    </Doughnut>
+                    </Bar>
                     <div className={styles.content}>
                         <h2>Dia mais visitado</h2>
                         <p>
@@ -179,10 +166,10 @@ export function Report(props: ReportProps) {
                     <div className={styles.content}>
                         <h2>Setor com mais visitas</h2>
                         <p>
-                            Hortaliças
+                            Hortifruti
                         </p>
                         <p>
-                            720
+                            219
                         </p>
                     </div>
                     <div className={styles.content}>
@@ -191,7 +178,7 @@ export function Report(props: ReportProps) {
                             Bebidas
                         </p>
                         <p>
-                            200
+                            168
                         </p>
                     </div>
                 </div>

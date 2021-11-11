@@ -94,13 +94,13 @@ export function Chart() {
                 </Bar>
             </div>
             <div className={styles.content}>
-                <h2 className={styles.margin}>Visitas por setor no período</h2>
+                <h2 className={styles.margin}>Visitas por setor no total</h2>
                 <Bar className={styles.margin}
                         data={{
                             labels: ['Frios', 'Bebidas', 'Hortifruti'],
                             datasets: [{
                                 label: 'Setor',
-                                data: [128, 101, 142],
+                                data: [185, 168, 219],
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(54, 162, 235, 0.2)',

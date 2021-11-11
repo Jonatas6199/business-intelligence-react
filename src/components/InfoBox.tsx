@@ -27,10 +27,10 @@ export function InfoBox() {
                 <div className={styles.content}>
                     <h2>Setor com mais visitas</h2>
                     <p>
-                        Hortaliças
+                        Hortifruti
                     </p>
                     <p>
-                        720
+                        219
                     </p>
                 </div>
                 <div className={styles.content}>
@@ -39,7 +39,7 @@ export function InfoBox() {
                         Bebidas
                     </p>
                     <p>
-                        200
+                        168
                     </p>
                 </div>
             </div>
