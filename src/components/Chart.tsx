@@ -11,7 +11,7 @@ export function Chart() {
                 <h2 className={styles.margin}>Visitas</h2>
                 <Line className={styles.margin}
                     data={{
-                        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                        //labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
 
                         datasets: [{
                             label: 'Visitas por dia',
@@ -35,7 +35,7 @@ export function Chart() {
                 <h2 className={styles.margin}>Tempo médio das visitas em minutos por dia</h2>
                 <Line className={styles.margin}
                     data={{
-                        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                        //labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
 
                         datasets: [{
                             label: 'Média de minutos por dia',
