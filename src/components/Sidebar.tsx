@@ -15,6 +15,12 @@ export function Sidebar() {
     function openReport() {
 		window.open("https://smart-moving.vercel.app/relatorio").focus();
 	   }
+       function scrollTop(){
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+       }
     return (
         <div className={styles.navcontainer} >
             <div className={styles.logo}>
@@ -22,7 +28,7 @@ export function Sidebar() {
             </div>
             <div className={styles.wrapper}>
                 <ul>
-                    <li>
+                    <li onClick={scrollTop}>
                         <MdDashboard className={styles.iconStyle} /> Dashboard
                     </li>
 
