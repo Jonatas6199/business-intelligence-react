@@ -13,7 +13,7 @@ import { MdArrowForward } from 'react-icons/md';
 export function Sidebar() {
     const { buildHeatmap } = useContext(DataContext);
     function openReport() {
-		window.open("http://localhost:3000/relatorio").focus();
+		window.open("https://smart-moving.vercel.app/relatorio").focus();
 	   }
     return (
         <div className={styles.navcontainer} >
