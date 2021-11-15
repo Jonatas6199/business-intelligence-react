@@ -10,11 +10,11 @@ export function Dashboard() {
   //com isso daria pra chamar só as funções de adicionar os pontos, n sei se seria intuitivo
   const { buildHeatmap } = useContext(DataContext);
 
-  /*
+  
   useEffect(()=>{
     buildHeatmap();
   },[])
-*/
+
   
   return (
     <div>
