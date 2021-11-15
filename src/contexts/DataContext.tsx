@@ -147,7 +147,7 @@ export function DataProvider({ children }: DataProviderProps) {
         // if you have a set of datapoints always use setData instead of addData
         // for data initialization
         heatmapInstance.setData(data);
-        getAllNotifications();
+        //getAllNotifications();
     }
 
     function getSensors() {
