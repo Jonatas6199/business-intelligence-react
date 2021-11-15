@@ -11,18 +11,14 @@ export function Chart() {
                 <h2 className={styles.margin}>Visitas</h2>
                 <Line className={styles.margin}
                     data={{
-                        //labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
 
                         datasets: [{
                             label: 'Visitas por dia',
                             data: [55, 70, 42, 60, 78, 123, 95],
                             tension: 0.1,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)'
-                            ],
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
                             borderWidth: 1
                         }],
 
@@ -35,18 +31,14 @@ export function Chart() {
                 <h2 className={styles.margin}>Tempo médio das visitas em minutos por dia</h2>
                 <Line className={styles.margin}
                     data={{
-                        //labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
 
                         datasets: [{
                             label: 'Média de minutos por dia',
                             data: [45, 40, 35, 54, 63, 70, 45],
                             tension: 0.1,
-                            backgroundColor: [
-                                'rgba(0, 181, 204, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(0, 181, 204, 1)'
-                            ],
+                            backgroundColor: 'rgba(0, 181, 204, 0.2)',
+                            borderColor: 'rgba(0, 181, 204, 1)',
                             borderWidth: 1
                         }],
 
