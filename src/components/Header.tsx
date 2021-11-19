@@ -15,7 +15,7 @@ export function Header() {
 					<p>Bem-vindo</p>
 				</div>
 				<div className={styles.profile}>
-					<img src="images/smart_moving_logo_blue_background.png" onClick={openGooglePlay} alt="app" className={styles.profileImage} />
+					<img src="images/google_play.png" onClick={openGooglePlay} alt="app" className={styles.profileImage} />
 				</div>
 			</div>
 		</div>
