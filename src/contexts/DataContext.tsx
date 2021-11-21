@@ -24,8 +24,10 @@ interface RequestBody {
 }
 
 interface DataContextData {
+    updateDateTimeString: String;
     getSensors: () => Sensor[];
     buildHeatmap: () => void;
+    setDateTime: () => void;
 
 }
 
@@ -56,8 +58,15 @@ export const DataContext = createContext({} as DataContextData);
 
 export function DataProvider({ children }: DataProviderProps) {
 
+    const [updateDateTime, setUpdateDateTime] = useState(new Date());
+    const [updateDateTimeString, setUpdateDateTimeString] = useState("");
     function getConfigData() {
 
+    }
+    async function DateAsync(){
+        var d = new Date();
+        async ()=> d.setDate(Date.now());
+        return d;
     }
     function getSensorsPosition() {
 
@@ -65,6 +74,12 @@ export function DataProvider({ children }: DataProviderProps) {
     function UpdateData() {
 
     }
+     async function setDateTime(){
+        var data = await DateAsync();
+        var dataString = data.toLocaleString();
+        setUpdateDateTime(data);
+        setUpdateDateTimeString(dataString);
+    }   
 
     async function getAllNotifications() {
         let token = await CallApiToken();
@@ -164,6 +179,8 @@ export function DataProvider({ children }: DataProviderProps) {
     }
     return (
         <DataContext.Provider value={{
+            updateDateTimeString,
+            setDateTime,
             getSensors,
             buildHeatmap
         }}

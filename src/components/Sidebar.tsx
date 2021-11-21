@@ -1,5 +1,5 @@
 import styles from '../styles/components/Sidebar.module.css';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { DataContext } from '../contexts/DataContext';
 import { MdDashboard } from "react-icons/md";//icone da dashboard
 import { RiMapPin5Fill } from "react-icons/ri";//icone do mapa
@@ -12,15 +12,29 @@ import { MdArrowForward } from 'react-icons/md';
 
 export function Sidebar() {
     const { buildHeatmap } = useContext(DataContext);
+    const { setDateTime } = useContext(DataContext);
+    const { updateDateTimeString } = useContext(DataContext);
+
     function openReport() {
-		window.open("https://smart-moving.vercel.app/relatorio").focus();
-	   }
-       function scrollTop(){
+        window.open("https://smart-moving.vercel.app/relatorio").focus();
+    }
+    function scrollTop() {
         window.scrollTo({
             top: 0,
             behavior: "smooth"
-          });
-       }
+        });
+    }
+
+    function update() {
+        buildHeatmap();
+        setDateTime();
+    }
+    
+  useEffect(()=>{
+    update();
+  },[])
+
+
     return (
         <div className={styles.navcontainer} >
             <div className={styles.logo}>
@@ -32,7 +46,7 @@ export function Sidebar() {
                         <MdDashboard className={styles.iconStyle} /> Dashboard
                     </li>
 
-                    <li  onClick={openReport}>
+                    <li onClick={openReport}>
                         <RiFilePaperLine className={styles.iconStyle} /> Relatórios
                     </li>
 
@@ -40,8 +54,12 @@ export function Sidebar() {
                         <MdArrowForward className={styles.iconStyle} />Exportar Dados
                     </li>
 
-                    <li onClick={buildHeatmap} >
+                    <li onClick={update} >
                         <RiRefreshLine className={styles.iconStyle} />Atualizar
+                    </li>
+
+                    <li className={styles.iconStyle}>
+                        Última Atualização às {updateDateTimeString}
                     </li>
                 </ul>
             </div>
