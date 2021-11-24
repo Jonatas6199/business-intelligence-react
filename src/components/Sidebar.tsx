@@ -14,6 +14,9 @@ export function Sidebar() {
     const { buildHeatmap } = useContext(DataContext);
     const { setDateTime } = useContext(DataContext);
     const { updateDateTimeString } = useContext(DataContext);
+    const { getAllNotifications } = useContext(DataContext);
+   
+    
 
     function openReport() {
         window.open("https://smart-moving.vercel.app/relatorio").focus();
@@ -28,6 +31,7 @@ export function Sidebar() {
     function update() {
         buildHeatmap();
         setDateTime();
+        getAllNotifications();
     }
     
   useEffect(()=>{

@@ -10,25 +10,54 @@ interface Sensor {
     quantity: number; //quantidade de leituras feitas no sensor
     posX: number;//coornenada X do sensor
     posY: number;//coordenada Y do sensor
+    //datetime add dia e hora
+}
+interface Notification {
+    sensor_id: string;
+    tag_id: string;
+    timestamp: string;
+    length: number;
 }
 
-//array
-interface Notifiy {
-    timeStamp: number;//data
-    idSensor: number;
-    idTag: number;
-}
+
 interface RequestBody {
     id: number;
     sensores: Sensor[];
 }
+interface ChartData{
+    labels: Array<String>;
+    datasets: Array<Object>;
+    /*
+     data={{
+                        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+
+                        datasets: [{
+                            label: 'Visitas por dia',
+                            data: [55, 70, 42, 60, 78, 123, 95],
+                            tension: 0.1,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }],
+
+                    }}
+    
+
+
+    */
+}
 
 interface DataContextData {
+    dataChart1: ChartData;
+    dataChart2: ChartData;
+    dataChart3: ChartData;
+    dataChart4: ChartData;
+    dataBlocks: ChartData;
     updateDateTimeString: String;
     getSensors: () => Sensor[];
     buildHeatmap: () => void;
     setDateTime: () => void;
-
+    getAllNotifications: () => void;
 }
 
 interface DataProviderProps {
@@ -42,7 +71,7 @@ function generateRandomQuantitiesPerSensor() {
     var x = [0.05, 0.35, 0.58, 0.2, 0.5, 0.95];
     //entrada, frios, bebidas, hortifruti 1, hortifruti 2, saída
     var y = [0.08, 0.18, 0.45, 0.67, 0.7, 0.24];
-    
+
 
     sensores.push({ id: 0, name: "Sensor Entrada", quantity: 230, posX: x[0], posY: y[0] })
     sensores.push({ id: 1, name: "Sensor Frios", quantity: 185, posX: x[1], posY: y[1] })
@@ -60,29 +89,118 @@ export function DataProvider({ children }: DataProviderProps) {
 
     const [updateDateTime, setUpdateDateTime] = useState(new Date());
     const [updateDateTimeString, setUpdateDateTimeString] = useState("");
-    function getConfigData() {
+
+    const initialValue = { } as ChartData;
+    const [dataChart1, setDataChart1] = useState(initialValue);
+    const [dataChart2, setDataChart2] = useState(initialValue);
+    const [dataChart3, setDataChart3] = useState(initialValue);
+    const [dataChart4, setDataChart4] = useState(initialValue);
+    const [dataBlocks, setDataBlocks] = useState(initialValue);
+
+    async function pushSensors() {
+        
+        //aplicar lógica do filtro depois do var notifications
+        var notifications = await getAllNotifications();
+        let sensorEntrada = 0;
+        let sensorFrios = 0;
+        let sensorBebidas = 0;
+        let sensorHortifruti1 = 0;
+        let sensorHortifruti2 = 0;
+        let sensorSaída = 0;
+
+
+        var data1 = {} as ChartData;
+        var data2 = {} as ChartData;
+        var data3 = {} as ChartData;
+        var data4 = {} as ChartData;
+        var datablocks = {} as ChartData;
+        
+        for (let i = 0; i < notifications.length; i++) {
+            
+        }
+
+        for (let i = 0; i < notifications.length; i++) {
+            var currentSensor = notifications[i];
+            
+            //AGRUPAR POR DATA E ADICIONAR NO DATACHART
+            if (currentSensor.sensor_id == "LEITOR_001") {
+                sensorHortifruti1 = sensorHortifruti1 + 1;
+            }
+            else if (currentSensor.sensor_id == "LEITOR_002") {
+                sensorHortifruti2 = sensorHortifruti2 + 1;
+            }
+            else if (currentSensor.sensor_id == "LEITOR_003") {
+                sensorBebidas = sensorBebidas + 1;
+            }
+            else if (currentSensor.sensor_id == "LEITOR_004") {
+                sensorFrios = sensorFrios + 1;
+            }
+            else if (currentSensor.sensor_id == "LEITOR_005") {
+                sensorEntrada = sensorEntrada + 1;
+
+            }
+            else if (currentSensor.sensor_id == "LEITOR_006") {
+                sensorSaída = sensorSaída + 1;
+            }
+        }
+
+        var sensores = [] as Sensor[];
+
+        //entrada, frios, bebidas, hortifruti 1, hortifruti 2, saída
+        var x = [0.05, 0.35, 0.58, 0.2, 0.5, 0.95];
+        //entrada, frios, bebidas, hortifruti 1, hortifruti 2, saída
+        var y = [0.08, 0.18, 0.45, 0.67, 0.7, 0.24];
+
+        var xgh = notifications[0].sensor_id;
+        var data1 = {} as ChartData;
+        setDataChart1(data1);
+
+
+        /*
+        MOCK NÃO APAGAR
+        sensores.push({ id: 0, name: "Sensor Entrada", quantity: 230, posX: x[0], posY: y[0] });
+        sensores.push({ id: 1, name: "Sensor Frios", quantity: 185, posX: x[1], posY: y[1] });
+        sensores.push({ id: 2, name: "Sensor Bebidas", quantity: 168, posX: x[2], posY: y[2] });
+        sensores.push({ id: 3, name: "Sensor Hortifruti 1", quantity: 219, posX: x[3], posY: y[3] });
+        sensores.push({ id: 4, name: "Sensor Hortifruti 2", quantity: 219, posX: x[4], posY: y[4] });
+        sensores.push({ id: 5, name: "Sensor Saída", quantity: 230, posX: x[5], posY: y[5] });
+        */
+        sensores.push({ id: 0, name: "Sensor Entrada", quantity: sensorEntrada, posX: x[0], posY: y[0] });
+        sensores.push({ id: 1, name: "Sensor Frios", quantity: sensorFrios, posX: x[1], posY: y[1] });
+        sensores.push({ id: 2, name: "Sensor Bebidas", quantity: sensorBebidas, posX: x[2], posY: y[2] });
+        sensores.push({ id: 3, name: "Sensor Hortifruti 1", quantity: sensorHortifruti1, posX: x[3], posY: y[3] });
+        sensores.push({ id: 4, name: "Sensor Hortifruti 2", quantity: sensorHortifruti2, posX: x[4], posY: y[4] });
+        sensores.push({ id: 5, name: "Sensor Saída", quantity: sensorSaída, posX: x[5], posY: y[5] });
+
+        return sensores;
 
     }
-    async function DateAsync(){
+    async function DateAsync() {
         var d = new Date();
-        async ()=> d.setDate(Date.now());
+        async () => d.setDate(Date.now());
         return d;
     }
-    function getSensorsPosition() {
 
-    }
-    function UpdateData() {
 
+    function getNotifications(notifications) {
+
+        for (let i = 0; i < notifications.length; i++) {
+            console.log(notifications[i].sensor_id);
+            console.log(notifications[i].tag_id);
+            var date = new Date(notifications[i].timestamp);
+            console.log(date.toLocaleString());
+        }
     }
-     async function setDateTime(){
+    async function setDateTime() {
         var data = await DateAsync();
         var dataString = data.toLocaleString();
         setUpdateDateTime(data);
         setUpdateDateTimeString(dataString);
-    }   
+    }
 
     async function getAllNotifications() {
         let token = await CallApiToken();
+        var array = [] as Notification[];
         let config = {
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -93,9 +211,11 @@ export function DataProvider({ children }: DataProviderProps) {
             config
         )
             .then((response) => {
-                console.log(response)
-            })
-            .catch()
+                array.push(response.data.response);
+            }).catch();
+        console.log(array);
+        return array[0];
+
     }
     async function CallApiToken() {
         let hash = "";
@@ -113,7 +233,8 @@ export function DataProvider({ children }: DataProviderProps) {
             .catch()
         return hash;
     }
-    function buildHeatmap() {
+
+    async function buildHeatmap() {
         var element = document.getElementById('heatmap');
         var lastElement = element.lastElementChild;
         if (lastElement.id != 'heatmap-image' && lastElement.id != 'drawsensor') {
@@ -125,7 +246,7 @@ export function DataProvider({ children }: DataProviderProps) {
             container: document.getElementById('heatmap')
         });
 
-        var sensors = getSensors();
+        var sensors = await pushSensors();
         var length = sensors.length;
 
         // now generate some random data
@@ -179,10 +300,16 @@ export function DataProvider({ children }: DataProviderProps) {
     }
     return (
         <DataContext.Provider value={{
+            dataChart1,
+            dataChart2,
+            dataChart3,
+            dataChart4,
+            dataBlocks,
             updateDateTimeString,
             setDateTime,
             getSensors,
-            buildHeatmap
+            buildHeatmap,
+            getAllNotifications
         }}
         >
             {children}

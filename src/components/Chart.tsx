@@ -1,9 +1,12 @@
 import React from 'react';
+import { useContext } from 'react';
+import { DataContext } from '../contexts/DataContext';
 import { Line, Bar } from 'react-chartjs-2';
 import styles from "../styles/components/Chart.module.css";
 
 
 export function Chart() {
+    const { dataChart1,dataChart2,dataChart3,dataChart4, dataBlocks } =  useContext(DataContext)
 
     return (
         <div className={styles.container}>
