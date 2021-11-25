@@ -6,7 +6,7 @@ import styles from "../styles/components/Chart.module.css";
 
 
 export function Chart() {
-    const { dataChart1,dataChart2,dataChart3,dataChart4, dataBlocks } =  useContext(DataContext)
+    const { dataChart1,dataChart2,dataChart3,dataChart4 } =  useContext(DataContext)
 
     return (
         <div className={styles.container}>
