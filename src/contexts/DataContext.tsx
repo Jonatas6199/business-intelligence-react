@@ -17,6 +17,7 @@ interface Notification {
     tag_id: string;
     timestamp: string;
     length: number;
+    datetime: Date;
 }
 
 
@@ -46,13 +47,23 @@ interface ChartData{
 
     */
 }
+interface InfoBoxData{
+    mostVisitedDay : LabelCount;
+    lessVisitedDay: LabelCount;
+    mostVisitedSection: LabelCount;
+    lessVisitedSection: LabelCount;
+}
+interface LabelCount{
+    label: string;
+    count: string;
+}
 
 interface DataContextData {
     dataChart1: ChartData;
     dataChart2: ChartData;
     dataChart3: ChartData;
     dataChart4: ChartData;
-    dataBlocks: ChartData;
+    dataBlocks: InfoBoxData;
     updateDateTimeString: String;
     getSensors: () => Sensor[];
     buildHeatmap: () => void;
@@ -62,6 +73,28 @@ interface DataContextData {
 
 interface DataProviderProps {
     children: ReactNode;
+}
+
+function getGroupsArray(data){
+    console.log(data);
+    const groups = data.reduce((groups, notification) => {
+        return "";
+        const date = notification.datetime.toLocaleDateString();
+        if (!groups[date]) {
+          groups[date] = [];
+        }
+        groups[date].push(notification);
+        return groups;
+      }, {});
+      
+      // Edit: to add it in the array format instead
+      const groupArrays = Object.keys(groups).map((date) => {
+        return {
+          date,
+          games: groups[date]
+        };
+      });
+      return groupArrays;
 }
 
 function generateRandomQuantitiesPerSensor() {
@@ -91,11 +124,12 @@ export function DataProvider({ children }: DataProviderProps) {
     const [updateDateTimeString, setUpdateDateTimeString] = useState("");
 
     const initialValue = { } as ChartData;
+    const datBlocksInitialValue = {} as InfoBoxData;
     const [dataChart1, setDataChart1] = useState(initialValue);
     const [dataChart2, setDataChart2] = useState(initialValue);
     const [dataChart3, setDataChart3] = useState(initialValue);
     const [dataChart4, setDataChart4] = useState(initialValue);
-    const [dataBlocks, setDataBlocks] = useState(initialValue);
+    const [dataBlocks, setDataBlocks] = useState(datBlocksInitialValue);
 
     async function pushSensors() {
         
@@ -113,15 +147,17 @@ export function DataProvider({ children }: DataProviderProps) {
         var data2 = {} as ChartData;
         var data3 = {} as ChartData;
         var data4 = {} as ChartData;
-        var datablocks = {} as ChartData;
+        var datablocks = {} as InfoBoxData;
+        var dateTimeArray = { } as Date[];
         
-        for (let i = 0; i < notifications.length; i++) {
-            
-        }
-
         for (let i = 0; i < notifications.length; i++) {
             var currentSensor = notifications[i];
             
+            var timestamp = notifications[i].timestamp;
+            var date = new Date(timestamp);
+            notifications[i].date = date;
+            //console.log(notifications[i]);
+            //console.log(date.toLocaleDateString());
             //AGRUPAR POR DATA E ADICIONAR NO DATACHART
             if (currentSensor.sensor_id == "LEITOR_001") {
                 sensorHortifruti1 = sensorHortifruti1 + 1;
@@ -143,6 +179,8 @@ export function DataProvider({ children }: DataProviderProps) {
                 sensorSaída = sensorSaída + 1;
             }
         }
+
+        getGroupsArray(notifications);
 
         var sensores = [] as Sensor[];
 
@@ -207,13 +245,14 @@ export function DataProvider({ children }: DataProviderProps) {
             }
         }
         await axios.get(
+            //https://gps-indoor.herokuapp.com/notification/visit/1633048866352-
             'https://gps-indoor.herokuapp.com/notification/',
             config
         )
             .then((response) => {
                 array.push(response.data.response);
             }).catch();
-        console.log(array);
+        
         return array[0];
 
     }
