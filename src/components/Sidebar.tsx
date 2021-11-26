@@ -7,7 +7,6 @@ import { MdSettings } from "react-icons/md"; //icone de configurações
 import { RiRefreshLine } from 'react-icons/ri'; //ícone de atualizar dados
 import { RiFilePaperLine } from 'react-icons/ri';
 import { MdArrowForward } from 'react-icons/md';
-import { CSVLink } from "react-csv";
 
 
 export function Sidebar() {

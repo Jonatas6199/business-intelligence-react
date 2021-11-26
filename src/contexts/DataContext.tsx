@@ -124,6 +124,25 @@ export function DataProvider({ children }: DataProviderProps) {
     const [dataBlocks, setDataBlocks] = useState(datBlocksInitialValue);
     const [notificationsToExport, setNotificationsToExport] = useState(notificationsToExportInitialValue);
 
+    async function getNotificationsVisits(){
+        let token = await CallApiToken();
+        var array = [] as Object[];
+        let config = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        }
+        await axios.get(
+            //https://gps-indoor.herokuapp.com/notification/visit/1633048866352-
+            'https://gps-indoor.herokuapp.com/notification/visitByDay/0-',
+            config
+        )
+            .then((response) => {
+                array.push(response.data.response);
+            }).catch();
+
+        return array[0];
+    }
     async function getDataChart1() {
 
         let token = await CallApiToken();
@@ -149,6 +168,8 @@ export function DataProvider({ children }: DataProviderProps) {
         //aplicar lógica do filtro depois do var notifications
         var notifications = await getAllNotifications();
         var xgh = await getDataChart1();
+        var xd = await getNotificationsVisits();
+        console.log(xd);
         var chartData1Object = {} as ChartData;
 
         chartData1Object.labels = {} as String[];

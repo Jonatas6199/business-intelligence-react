@@ -9,19 +9,19 @@ export function InfoBox() {
                 <div className={styles.content}>
                     <h2>Dia mais visitado</h2>
                     <p>
-                        Sábado 06/11/2021
+                        25/11/2021
                     </p>
                     <p>
-                        123
+                        20
                     </p>
                 </div>
                 <div className={styles.content}>
                     <h2>Dia menos visitado</h2>
                     <p>
-                        Quarta-feira 03/11/2021
+                        23/10/2021
                     </p>
                     <p>
-                        42
+                        1
                     </p>
                 </div>
                 <div className={styles.content}>
@@ -30,7 +30,7 @@ export function InfoBox() {
                         Hortifruti
                     </p>
                     <p>
-                        219
+                        47
                     </p>
                 </div>
                 <div className={styles.content}>
@@ -39,7 +39,7 @@ export function InfoBox() {
                         Bebidas
                     </p>
                     <p>
-                        168
+                        35
                     </p>
                 </div>
             </div>

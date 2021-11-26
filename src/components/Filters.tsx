@@ -1,6 +1,5 @@
 import styles from '../styles/components/Filters.module.css';
 import { useState, useEffect, useContext } from 'react';
-import ReactDatePicker from 'react-datepicker';
 export function Filters() {
 
     //const[btn24,setbtn24] = useContext(btn24hContext);
