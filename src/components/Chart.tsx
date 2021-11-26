@@ -10,7 +10,7 @@ export function Chart() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.content}>
+            <div id="chartOne" className={styles.content}>
                 <h2 className={styles.margin}>Visitas</h2>
                 <Line className={styles.margin}
                     data={{
@@ -32,7 +32,7 @@ export function Chart() {
             </div>
             <div className={styles.content}>
                 <h2 className={styles.margin}>Tempo médio das visitas em minutos por dia</h2>
-                <Line className={styles.margin}
+                <Line id="chartTwo" className={styles.margin}
                     data={{
                         labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
 
@@ -53,7 +53,7 @@ export function Chart() {
             </div>
             <div className={styles.content}>
                 <h2 className={styles.margin}>Visitas por setor</h2>
-                <Bar className={styles.margin}
+                <Bar id="chartThree" className={styles.margin}
                     data={{
                         labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
                         datasets: [
@@ -90,7 +90,7 @@ export function Chart() {
             </div>
             <div className={styles.content}>
                 <h2 className={styles.margin}>Visitas por setor no total</h2>
-                <Bar className={styles.margin}
+                <Bar id="chartFour" className={styles.margin}
                         data={{
                             labels: ['Frios', 'Bebidas', 'Hortifruti'],
                             datasets: [{

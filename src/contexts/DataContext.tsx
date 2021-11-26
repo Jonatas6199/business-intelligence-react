@@ -1,6 +1,8 @@
 import { createContext, useState, ReactNode, useEffect } from "react";
 import h337 from 'heatmap.js';
 import axios from 'axios';
+import { Line, Bar } from 'react-chartjs-2';
+import styles from "../styles/components/Chart.module.css";
 
 
 // todas essas informações dos sensores vem do banco
@@ -25,38 +27,22 @@ interface RequestBody {
     id: number;
     sensores: Sensor[];
 }
-interface ChartData{
+interface ChartData {
     labels: Array<String>;
-    datasets: Array<Object>;
-    /*
-     data={{
-                        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
-
-                        datasets: [{
-                            label: 'Visitas por dia',
-                            data: [55, 70, 42, 60, 78, 123, 95],
-                            tension: 0.1,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 1
-                        }],
-
-                    }}
-    
-
-
-    */
+    data: Array<Number>;
 }
-interface InfoBoxData{
-    mostVisitedDay : LabelCount;
+interface InfoBoxData {
+    mostVisitedDay: LabelCount;
     lessVisitedDay: LabelCount;
     mostVisitedSection: LabelCount;
     lessVisitedSection: LabelCount;
 }
-interface LabelCount{
-    label: string;
-    count: string;
+interface LabelCount {
+    length: number;
+    label: string[];
+    date: Number[];
 }
+
 
 interface DataContextData {
     dataChart1: ChartData;
@@ -68,33 +54,38 @@ interface DataContextData {
     getSensors: () => Sensor[];
     buildHeatmap: () => void;
     setDateTime: () => void;
-    getAllNotifications: () => void;
+    getAllNotifications: () => Promise<Notification>;
+
+}
+
+function storeJsonIntoCSV() {
+
+
 }
 
 interface DataProviderProps {
     children: ReactNode;
 }
 
-function getGroupsArray(data){
-    console.log(data);
+function getGroupsArray(data) {
     const groups = data.reduce((groups, notification) => {
         return "";
         const date = notification.datetime.toLocaleDateString();
         if (!groups[date]) {
-          groups[date] = [];
+            groups[date] = [];
         }
         groups[date].push(notification);
         return groups;
-      }, {});
-      
-      // Edit: to add it in the array format instead
-      const groupArrays = Object.keys(groups).map((date) => {
+    }, {});
+
+    // Edit: to add it in the array format instead
+    const groupArrays = Object.keys(groups).map((date) => {
         return {
-          date,
-          games: groups[date]
+            date,
+            games: groups[date]
         };
-      });
-      return groupArrays;
+    });
+    return groupArrays;
 }
 
 function generateRandomQuantitiesPerSensor() {
@@ -123,18 +114,67 @@ export function DataProvider({ children }: DataProviderProps) {
     const [updateDateTime, setUpdateDateTime] = useState(new Date());
     const [updateDateTimeString, setUpdateDateTimeString] = useState("");
 
-    const initialValue = { } as ChartData;
+    const initialValue = {} as ChartData;
     const datBlocksInitialValue = {} as InfoBoxData;
+    const notificationsToExportInitialValue = {} as Notification;
     const [dataChart1, setDataChart1] = useState(initialValue);
     const [dataChart2, setDataChart2] = useState(initialValue);
     const [dataChart3, setDataChart3] = useState(initialValue);
     const [dataChart4, setDataChart4] = useState(initialValue);
     const [dataBlocks, setDataBlocks] = useState(datBlocksInitialValue);
+    const [notificationsToExport, setNotificationsToExport] = useState(notificationsToExportInitialValue);
 
+    async function getDataChart1() {
+
+        let token = await CallApiToken();
+        var array = [] as LabelCount[];
+        let config = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        }
+        await axios.get(
+            //https://gps-indoor.herokuapp.com/notification/visit/1633048866352-
+            'https://gps-indoor.herokuapp.com/notification/visitByDay/1633125455360-',
+            config
+        )
+            .then((response) => {
+                array.push(response.data.response);
+            }).catch();
+
+        return array[0];
+    }
     async function pushSensors() {
-        
+
         //aplicar lógica do filtro depois do var notifications
         var notifications = await getAllNotifications();
+        var xgh = await getDataChart1();
+        var chartData1Object = {} as ChartData;
+
+        chartData1Object.labels = {} as String[];
+        chartData1Object.data = {} as Number[];
+
+        chartData1Object.labels = xgh.label;
+        chartData1Object.data = xgh.date;
+
+        const dates = [""];
+        const counts = [""];
+
+        for (let i = 0; i < xgh.length; i++) {
+            //chartData1Object.labels.push(xgh[i].date);
+            //chartData1Object.data.push(xgh[i].count);
+            let auxDate = xgh[i].date;
+            let auxCount = xgh[i].count;
+
+            dates.push(auxDate);
+            counts.push(auxCount);
+        }
+        dates.shift();
+        counts.shift();
+        console.log(dates);
+        console.log(counts);
+        //console.log(chartData1Object);
+
         let sensorEntrada = 0;
         let sensorFrios = 0;
         let sensorBebidas = 0;
@@ -148,14 +188,14 @@ export function DataProvider({ children }: DataProviderProps) {
         var data3 = {} as ChartData;
         var data4 = {} as ChartData;
         var datablocks = {} as InfoBoxData;
-        var dateTimeArray = { } as Date[];
-        
+        var dateTimeArray = {} as Date[];
+
         for (let i = 0; i < notifications.length; i++) {
             var currentSensor = notifications[i];
-            
+
             var timestamp = notifications[i].timestamp;
             var date = new Date(timestamp);
-            notifications[i].date = date;
+            notifications[i].datetime = date;
             //console.log(notifications[i]);
             //console.log(date.toLocaleDateString());
             //AGRUPAR POR DATA E ADICIONAR NO DATACHART
@@ -192,7 +232,6 @@ export function DataProvider({ children }: DataProviderProps) {
         var xgh = notifications[0].sensor_id;
         var data1 = {} as ChartData;
         setDataChart1(data1);
-
 
         /*
         MOCK NÃO APAGAR
@@ -252,7 +291,7 @@ export function DataProvider({ children }: DataProviderProps) {
             .then((response) => {
                 array.push(response.data.response);
             }).catch();
-        
+
         return array[0];
 
     }
@@ -271,6 +310,32 @@ export function DataProvider({ children }: DataProviderProps) {
             })
             .catch()
         return hash;
+    }
+    async function buildChartOne() {
+
+        function getChartOne() {
+            return (
+                <Line className={styles.margin}
+                    data={{
+                        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+
+                        datasets: [{
+                            label: 'Visitas por dia',
+                            data: [55, 70, 42, 60, 78, 123, 95],
+                            tension: 0.1,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }],
+
+                    }}
+
+                >
+                </Line>
+            )
+        }
+        var element = document.getElementById('chartOne');
+
     }
 
     async function buildHeatmap() {

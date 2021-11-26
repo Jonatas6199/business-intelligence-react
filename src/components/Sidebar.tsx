@@ -7,7 +7,7 @@ import { MdSettings } from "react-icons/md"; //icone de configurações
 import { RiRefreshLine } from 'react-icons/ri'; //ícone de atualizar dados
 import { RiFilePaperLine } from 'react-icons/ri';
 import { MdArrowForward } from 'react-icons/md';
-
+import { CSVLink } from "react-csv";
 
 
 export function Sidebar() {
@@ -15,8 +15,6 @@ export function Sidebar() {
     const { setDateTime } = useContext(DataContext);
     const { updateDateTimeString } = useContext(DataContext);
     const { getAllNotifications } = useContext(DataContext);
-   
-    
 
     function openReport() {
         window.open("https://smart-moving.vercel.app/relatorio").focus();
@@ -28,15 +26,15 @@ export function Sidebar() {
         });
     }
 
-    function update() {
+    async function update() {
         buildHeatmap();
         setDateTime();
         getAllNotifications();
     }
-    
-  useEffect(()=>{
-    update();
-  },[])
+
+    useEffect(() => {
+        update();
+    }, [])
 
 
     return (
@@ -54,8 +52,8 @@ export function Sidebar() {
                         <RiFilePaperLine className={styles.iconStyle} /> Relatórios
                     </li>
 
-                    <li>
-                        <MdArrowForward className={styles.iconStyle} />Exportar Dados
+                    <li >
+                        <MdArrowForward className={styles.iconStyle} /> Exportar Dados
                     </li>
 
                     <li onClick={update} >
